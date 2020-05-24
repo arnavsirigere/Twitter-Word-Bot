@@ -73,6 +73,6 @@ async function getWord() {
       counter--;
     }
   }
-  definition = definitions.replace(/<\/?\w+>/g, '').repace(/<\/?\s*\w+\s*\w+\s*>/g, '');
+  definition = definitions.replace(/<\/?\w+>/g, '').replace(/<\/?\s*\w+\s*\w+\s*>/g, '');
   return { word, definition, attribution, wordnikUrl };
 }
