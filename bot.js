@@ -1,15 +1,5 @@
 console.log('Word Bot starting!');
 
-// Hitting the app at a endpoint every now and them so that it doesnt sleep!
-const http = require('http');
-const express = require('express');
-const app = express();
-app.get('/', (request, response) => response.sendStatus(200));
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 100 * 60 * 10);
-
 require('dotenv').config();
 let fetch = require('node-fetch');
 let Twit = require('twit');
