@@ -64,8 +64,8 @@ async function getWord() {
   // Sometimes, if the word is suppose elephants, the definition is "plural form of elephant", which is not so convenient.
   if (/Plural form of .*/.test(definition)) {
     definition = null;
-    dUrl = `https://api.wordnik.com/v4/word.json/${word.substring(0, word.length - 1)}/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
-    dResponse = await fetch(dUrl);
+    let dUrl = `https://api.wordnik.com/v4/word.json/${word.substring(0, word.length - 1)}/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+    let dResponse = await fetch(dUrl);
     defData = await dResponse.json();
     counter = defData.length - 1;
     while (!definition) {
