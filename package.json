@@ -17,6 +17,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
+    "node-keepalive": "0.0.1",
     "twit": "^2.2.11"
   }
 }

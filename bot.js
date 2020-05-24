@@ -1,5 +1,9 @@
 console.log('Word Bot starting!');
 
+// To make sure the bot doesn't sleep, when deployinh to glitch
+let keepAlive = require('node-keepalive');
+keepAlive({ link: 'https://twitter-word-bot.glitch.me/' });
+
 require('dotenv').config();
 let fetch = require('node-fetch');
 let Twit = require('twit');
