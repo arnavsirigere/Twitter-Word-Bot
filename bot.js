@@ -1,6 +1,6 @@
 console.log('Word Bot starting!');
 
-// To make sure the bot doesn't sleep, when deployinh to glitch
+// To make sure the bot doesn't sleep, when deploying to glitch
 let keepAlive = require('node-keepalive');
 keepAlive({ link: 'https://twitter-word-bot.glitch.me/' });
 
