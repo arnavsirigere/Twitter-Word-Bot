@@ -73,21 +73,6 @@ async function getWord() {
       counter--;
     }
   }
-
-  let regex1 = /<\/?\w+>/g;
-  let matches = definition.match(regex1);
-  if (matches) {
-    for (let i = 0; i < matches.length; i++) {
-      definition = definition.replace(matches[i], '');
-    }
-  }
-
-  let regex2 = /<\/?\s*\w+\s*\w+\s*>/g;
-  let matches2 = definition.match(regex2);
-  if (matches2) {
-    for (let i = 0; i < matches2.length; i++) {
-      definition = definition.replace(matches2[i], '');
-    }
-  }
+  definition = definitions.replace(/<\/?\w+>/g, '').repace(/<\/?\s*\w+\s*\w+\s*>/g, '');
   return { word, definition, attribution, wordnikUrl };
 }
