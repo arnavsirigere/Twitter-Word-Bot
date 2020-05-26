@@ -1,9 +1,8 @@
 console.log('Word Bot starting!');
 
-const express = require('express');
-const app = express();
+var express = require('express');
+var app = express();
 app.get('/', (request, response) => {
-  console.log(Date.now() + ' Ping Received');
   response.sendStatus(200);
 });
 app.listen(process.env.PORT);
@@ -77,6 +76,9 @@ async function getWord() {
       counter--;
     }
   }
-  definition = definition.replace(/<\/?\w+>/g, '').replace(/<\/?\s*\w+\s*\w+\s*>/g, '').replace(/<.*>/, '');
+  definition = definition
+    .replace(/<\/?\w+>/g, '')
+    .replace(/<\/?\s*\w+\s*\w+\s*>/g, '')
+    .replace(/<.*>/, '');
   return { word, definition, attribution, wordnikUrl };
 }
