@@ -2,7 +2,7 @@ const express = require('express');
 
 const server = express();
 
-server.get('/', (req, res) => {
+server.all('/', (req, res) => {
   res.send('Twitter Bot is alive!');
 });
 
