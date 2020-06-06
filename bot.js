@@ -23,6 +23,14 @@ tweet();
 setInterval(tweet, 60 * 60 * 1000);
 
 function tweet() {
+  try {
+    tweetWord();
+  } catch (err) {
+    tweetWord();
+  }
+}
+
+function tweetWord() {
   getWord()
     .then((content) => {
       console.log(content);
@@ -54,10 +62,15 @@ async function getWord() {
   let wordnikUrl = defData.length ? defData[0].wordnikUrl : defData.wordnikUrl;
 
   let definition;
-  let counter = defData.length - 1;
-  while (!definition) {
-    definition = defData[counter].text;
-    counter--;
+
+  if (defData.length > 0) {
+    let counter = 0;
+    while (!definition && counter < defData.length) {
+      definition = defData[counter].text;
+      counter++;
+    }
+  } else {
+    defintiion = defData.text;
   }
 
   // Sometimes, if the word is suppose elephants, the definition is "plural form of elephant", which is not so convenient.
@@ -66,12 +79,17 @@ async function getWord() {
     let dUrl = `https://api.wordnik.com/v4/word.json/${word.substring(0, word.length - 1)}/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
     let dResponse = await fetch(dUrl);
     defData = await dResponse.json();
-    counter = defData.length - 1;
-    while (!definition) {
-      definition = defData[counter].text;
-      counter--;
+    if (defData.length > 0) {
+      counter = 0;
+      while (!definition && counter < defData.length) {
+        definition = defData[counter].text;
+        counter++;
+      }
+    } else {
+      definition = defData.text;
     }
   }
+
   definition = definition
     .replace(/<\/?\w+>/g, '')
     .replace(/<\/?\s*\w+\s*\w+\s*>/g, '')
