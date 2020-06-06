@@ -3,11 +3,11 @@ const express = require('express');
 const server = express();
 
 server.all('/', (req, res) => {
-  res.send('Twitter Bot is alive!');
+  res.send('Discord Bot is alive!');
 });
 
 function keepAlive() {
-  app.listen(3000, () => {
+  server.listen(3000, () => {
     console.log('Server is ready!');
   });
 }
