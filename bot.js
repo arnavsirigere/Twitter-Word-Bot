@@ -26,7 +26,7 @@ function tweet() {
   try {
     tweetWord();
   } catch (err) {
-    tweetWord();
+    tweet();
   }
 }
 
