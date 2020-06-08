@@ -23,17 +23,8 @@ tweet();
 setInterval(tweet, 60 * 60 * 1000);
 
 function tweet() {
-  try {
-    tweetWord();
-  } catch (err) {
-    tweet();
-  }
-}
-
-function tweetWord() {
   getWord()
     .then((content) => {
-      console.log(content);
       let status = `Word of the Hour - ${content.word}\nDefinition -  ${content.definition ? content.definition : 'Definition not available!'}\n\n#wordnik Wordnik Url - ${content.wordnikUrl}\nDefinition Attribution - ${content.attribution.split(',')[0]}`;
       console.log(status);
       T.post('statuses/update', { status: status }, tweeted);
@@ -44,6 +35,7 @@ function tweetWord() {
 function tweeted(err, data, response) {
   if (err) {
     console.error(err);
+    tweet();
   } else {
     console.log('Tweeted!');
   }
